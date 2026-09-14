@@ -1,0 +1,27 @@
+name: Terraform validation
+
+on:
+  pull_request:
+    paths:
+      - '**.tf'
+      - '**.tfvars.example'
+      - '.github/workflows/terraform.yml'
+  push:
+    branches:
+      - main
+    paths:
+      - '**.tf'
+      - '**.tfvars.example'
+      - '.github/workflows/terraform.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  format:
+    name: Format check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: hashicorp/setup-terraform@v3
+      - run: terraform fmt -check -recursive
