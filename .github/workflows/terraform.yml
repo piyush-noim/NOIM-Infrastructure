@@ -6,6 +6,8 @@ on:
       - '**.tf'
       - '**.tfvars.example'
       - '.github/workflows/terraform.yml'
+      - 'scripts/validate-terraform.sh'
+      - 'tests/validate-terraform.sh'
   push:
     branches:
       - main
@@ -13,6 +15,8 @@ on:
       - '**.tf'
       - '**.tfvars.example'
       - '.github/workflows/terraform.yml'
+      - 'scripts/validate-terraform.sh'
+      - 'tests/validate-terraform.sh'
 
 permissions:
   contents: read
