@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://noim.dev/contracts/v1/configuration.schema.json",
+  "title": "NOIM Configuration",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["values"],
+  "properties": {
+    "values": {"type": "object", "description": "Non-secret configuration values only."},
+    "secretReferences": {"type": "array", "items": {"type": "object", "additionalProperties": false, "required": ["name", "provider", "reference"], "properties": {"name": {"type": "string", "minLength": 1}, "provider": {"type": "string", "minLength": 1}, "reference": {"type": "string", "minLength": 1}}}}
+  }
+}

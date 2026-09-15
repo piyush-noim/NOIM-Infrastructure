@@ -1,14 +1,20 @@
 ENV ?= development
 TF_DIR := environments/$(ENV)
 
-.PHONY: fmt validate init plan apply destroy
+.PHONY: fmt test validate validate-all init plan apply destroy
 
 fmt:
 	terraform fmt -recursive
 
 validate:
-	terraform -chdir=$(TF_DIR) init -backend=false
-	terraform -chdir=$(TF_DIR) validate
+	./scripts/validate-terraform.sh --environment $(ENV)
+
+validate-all:
+	./scripts/validate-terraform.sh
+
+test:
+	./tests/validate-terraform.sh
+	PYTHONDONTWRITEBYTECODE=1 python3 ./tests/core-contracts.py
 
 init:
 	terraform -chdir=$(TF_DIR) init

@@ -1,0 +1,8 @@
+{
+  "identity-principal": {"id": "agent:build-01", "kind": "superuser"},
+  "policy-evaluation": {"request": {"operation": "resource.inspect", "principal": {"id": "agent:build-01", "kind": "ai-agent"}}, "decision": "bypass"},
+  "resource-descriptor": {"id": "resource:01", "kind": "compute", "location": "datacenter"},
+  "block-metadata": {"id": "block:01", "name": "Broken", "version": "v1", "description": "Invalid version."},
+  "audit-event": {"id": "event:01", "occurredAt": "not-a-date", "action": "resource.inspect", "actor": {"id": "agent:build-01", "kind": "ai-agent"}, "outcome": "bypassed"},
+  "configuration": {"values": {}, "secret": "plaintext-value"}
+}

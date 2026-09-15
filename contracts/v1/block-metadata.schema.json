@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://noim.dev/contracts/v1/block-metadata.schema.json",
+  "title": "NOIM Block Metadata",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "name", "version", "description"],
+  "properties": {
+    "id": {"type": "string", "minLength": 1},
+    "name": {"type": "string", "minLength": 1},
+    "version": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"},
+    "description": {"type": "string", "minLength": 1},
+    "inputs": {"type": "array", "items": {"type": "string", "minLength": 1}, "uniqueItems": true},
+    "outputs": {"type": "array", "items": {"type": "string", "minLength": 1}, "uniqueItems": true},
+    "capabilities": {"type": "array", "items": {"type": "string", "minLength": 1}, "uniqueItems": true},
+    "configurationSchema": {"type": "string", "minLength": 1}
+  }
+}

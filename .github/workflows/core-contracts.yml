@@ -1,0 +1,33 @@
+name: Core contract validation
+
+on:
+  pull_request:
+    paths:
+      - 'contracts/**'
+      - 'tests/core-contracts.py'
+      - 'tests/fixtures/core-contracts/**'
+      - 'Makefile'
+      - '.github/workflows/core-contracts.yml'
+  push:
+    branches:
+      - main
+    paths:
+      - 'contracts/**'
+      - 'tests/core-contracts.py'
+      - 'tests/fixtures/core-contracts/**'
+      - 'Makefile'
+      - '.github/workflows/core-contracts.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: Validate core contracts
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python3 ./tests/core-contracts.py

@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://noim.dev/contracts/v1/audit-event.schema.json",
+  "title": "NOIM Audit Event",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "occurredAt", "action", "actor", "outcome"],
+  "properties": {
+    "id": {"type": "string", "minLength": 1},
+    "occurredAt": {"type": "string", "format": "date-time"},
+    "action": {"type": "string", "minLength": 1},
+    "actor": {"type": "object", "additionalProperties": false, "required": ["id", "kind"], "properties": {"id": {"type": "string", "minLength": 1}, "kind": {"type": "string", "enum": ["human", "developer", "service", "ai-agent"]}}},
+    "outcome": {"type": "string", "enum": ["succeeded", "denied", "failed"]},
+    "resourceId": {"type": "string", "minLength": 1},
+    "correlationId": {"type": "string", "minLength": 1},
+    "details": {"type": "object"}
+  }
+}

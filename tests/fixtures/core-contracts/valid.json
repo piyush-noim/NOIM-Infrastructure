@@ -1,0 +1,8 @@
+{
+  "identity-principal": {"id": "agent:build-01", "kind": "ai-agent", "displayName": "Build agent"},
+  "policy-evaluation": {"request": {"operation": "resource.inspect", "principal": {"id": "agent:build-01", "kind": "ai-agent"}, "resourceId": "resource:local-01"}, "decision": "requires-approval", "policyReferences": ["policy:human-approval"]},
+  "resource-descriptor": {"id": "resource:local-01", "kind": "compute", "location": "local", "capabilities": ["container.run"]},
+  "block-metadata": {"id": "block:resource-inspector", "name": "Resource Inspector", "version": "1.0.0", "description": "Inspects a NOIM resource.", "inputs": ["resource"], "outputs": ["summary"]},
+  "audit-event": {"id": "event:01", "occurredAt": "2026-09-15T00:00:00Z", "action": "resource.inspect", "actor": {"id": "agent:build-01", "kind": "ai-agent"}, "outcome": "denied", "resourceId": "resource:local-01"},
+  "configuration": {"values": {"region": "local"}, "secretReferences": [{"name": "registry-token", "provider": "approved-secret-manager", "reference": "noim/registry-token"}]}
+}

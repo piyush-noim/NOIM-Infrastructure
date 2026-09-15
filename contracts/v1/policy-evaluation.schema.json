@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://noim.dev/contracts/v1/policy-evaluation.schema.json",
+  "title": "NOIM Policy Evaluation",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["request", "decision"],
+  "properties": {
+    "request": {
+      "type": "object", "additionalProperties": false,
+      "required": ["operation", "principal"],
+      "properties": {
+        "operation": {"type": "string", "minLength": 1},
+        "principal": {"type": "object", "additionalProperties": false, "required": ["id", "kind"], "properties": {"id": {"type": "string", "minLength": 1}, "kind": {"type": "string", "enum": ["human", "developer", "service", "ai-agent"]}}},
+        "resourceId": {"type": "string", "minLength": 1},
+        "context": {"type": "object"}
+      }
+    },
+    "decision": {"type": "string", "enum": ["allow", "deny", "requires-approval"]},
+    "policyReferences": {"type": "array", "items": {"type": "string", "minLength": 1}, "uniqueItems": true},
+    "obligations": {"type": "array", "items": {"type": "string", "minLength": 1}, "uniqueItems": true},
+    "reason": {"type": "string", "minLength": 1}
+  }
+}

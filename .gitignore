@@ -15,3 +15,7 @@ crash.*.log
 .idea/
 .vscode/
 *.swp
+
+# Python test cache
+__pycache__/
+*.py[cod]
