@@ -6,6 +6,8 @@ on:
       - '**.tf'
       - '**.tfvars.example'
       - '.github/workflows/terraform.yml'
+      - 'scripts/validate-terraform.sh'
+      - 'tests/validate-terraform.sh'
   push:
     branches:
       - main
@@ -13,15 +15,27 @@ on:
       - '**.tf'
       - '**.tfvars.example'
       - '.github/workflows/terraform.yml'
+      - 'scripts/validate-terraform.sh'
+      - 'tests/validate-terraform.sh'
 
 permissions:
   contents: read
 
 jobs:
-  format:
-    name: Format check
+  validate:
+    name: Validate ${{ matrix.environment }}
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        environment:
+          - development
+          - staging
+          - production
     steps:
       - uses: actions/checkout@v4
       - uses: hashicorp/setup-terraform@v3
-      - run: terraform fmt -check -recursive
+      - name: Check formatting
+        run: terraform fmt -check -recursive
+      - name: Validate configuration
+        run: ./scripts/validate-terraform.sh --environment ${{ matrix.environment }}
